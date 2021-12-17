@@ -1,0 +1,9 @@
+FROM python:3.8-slim-buster
+#RUN apt-get update && apt-get -y install cron
+#COPY stocks-cron /etc/cron.d/stocks-cron
+#RUN chmod 0744 /etc/cron.d/stocks-cron
+
+RUN pip install kafka-python requests
+WORKDIR /src
+COPY ./src /src
+#CMD ["python", "main.py"]
