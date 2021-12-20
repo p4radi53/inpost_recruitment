@@ -15,9 +15,12 @@ def main():
   spark,sc = init_spark()
   kafkaBrokers = "kafka:9092"
   df = spark.readStream.format("kafka").option("kafka.bootstrap.servers", kafkaBrokers).option("subscribe", "topic1").load().selectExpr("CAST(value as STRING)", "CAST(timestamp as STRING)")
-  today_path = get_today_path()
-  raw_path = f"/opt/spark-data/raw/{today_path}"
-  checkpoint_path = f"/opt/spark-data/checkpoint/{today_path}"
+  
+  #today_path = get_today_path()
+  #raw_path = f"/opt/spark-data/raw/{today_path}"
+  #checkpoint_path = f"/opt/spark-data/checkpoint/{today_path}"
+  raw_path = "/opt/spark-data/raw/"
+  checkpoint_path = "/opt/spark-data/checkpoint/"
   try:
     rmtree(raw_path)
     rmtree(checkpoint_path)

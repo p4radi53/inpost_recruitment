@@ -12,7 +12,7 @@ def init_spark():
 
 def main():
   spark, sc = init_spark()
-  df = spark.read.parquet("/opt/spark-data/raw/2021/12/20/09/27/")
+  df = spark.read.parquet("/opt/spark-data/raw/")
   
   schema_1 = StructType([
     StructField('company_name', StringType(), False),
