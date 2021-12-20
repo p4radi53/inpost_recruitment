@@ -28,7 +28,8 @@ services:
       FINNHUB_API_KEY: ${FINNHUB_API_KEY}
     depends_on:
       - kafka
-    command: tail -F anything
+      - spark-worker
+    command: tail -F anything # so that it stays alive
   
   spark-master:
     build:
@@ -44,6 +45,7 @@ services:
     environment:
       - SPARK_LOCAL_IP=spark-master
       - SPARK_WORKLOAD=master
+      - PYSPARK_PYTHON=/usr/bin/python3
   
   spark-worker:
     build:
